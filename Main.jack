@@ -4,6 +4,7 @@
 class Main{
 	function void main(){
 		do Board.drawBoard();
+		do Player.drawCircle(8);
 		return;
 	}
 

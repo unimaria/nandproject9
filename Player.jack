@@ -25,7 +25,61 @@ class Player {
 	
 	/** Draws circle on the screen in the given placement on the board. */
 	method void drawCircle(int circlePlacement){
-	
+		if (circlePlacement = 1){
+			do Screen.setColor(true);
+			do Screen.drawCircle(175, 65, 15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(175, 65, 10);
+		}
+		if (circlePlacement = 2){
+			do Screen.setColor(true);
+			do Screen.drawCircle(230,65,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(230, 65, 10);
+ 		}
+		if (circlePlacement = 3){
+			do Screen.setColor(true);
+			do Screen.drawCircle(283,65,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(283, 65, 10);
+		}
+		if (circlePlacement = 4){
+			do Screen.setColor(true);
+			do Screen.drawCircle(175,118,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(175, 118, 10);
+		}
+		if (circlePlacement = 5){
+			do Screen.setColor(true);
+			do Screen.drawCircle(230,118,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(230, 118, 10);
+		}
+		if (circlePlacement = 6){
+			do Screen.setColor(true);
+			do Screen.drawCircle(283,118,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(283, 118, 10);
+		}
+		if (circlePlacement = 7){
+			do Screen.setColor(true);
+			do Screen.drawCircle(175,171,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(175, 171, 10);
+		}
+		if (circlePlacement = 8){
+			do Screen.setColor(true);
+			do Screen.drawCircle(230,171,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(230, 171, 10);
+		}
+		if (circlePlacement = 9){
+			do Screen.setColor(true);
+			do Screen.drawCircle(283,171,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(283, 171, 10);
+		}
+		return;
 	}
 	
 }

@@ -1,5 +1,8 @@
 function Main.main 0
 call Board.drawBoard 0
 pop temp 0
+push constant 8
+call Player.drawCircle 1
+pop temp 0
 push constant 0
 return

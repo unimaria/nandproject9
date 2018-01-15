@@ -6,12 +6,21 @@ class Board{
 	field Player player; // the human player
 	field Computer computer; // the computer player
 	field int score; // score for the human player
-	field int round; // round number 
+	field int round; // round number
+	field Array occupied; // boolean array for marking the 9 places on the board
 	
 	/** Constructs a new board for the game. */
 	constructor Board new(){
+		var int i;
+		
 		let computer = Computer.new();
 		let player = Player.new();
+		let occupied = Array.new(9);
+		let i = 0;
+		while (i<9){
+			let occupied[i] = false;
+			let i = i + 1;
+		}
 		let score = 0;
 		let round = 1;
 		return this;
