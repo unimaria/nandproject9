@@ -1,0 +1,13 @@
+/**
+ * This is the human player of the tic-tac-toe game.
+ * The human player is represented by a circle.
+ */
+
+class Player {
+	field Array circles // array of the placement of circles on the board represented by ints
+	
+	/** Constructs a new tic-tac-toe player */
+	constructor Player new(){
+		let circles = Array.new(5) // 5 is the maximum circles on the board 
+	}
+}
