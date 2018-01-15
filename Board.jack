@@ -18,13 +18,12 @@ class Board{
 	}
 	
 	/** Draws a new board on the screen. */
-	function void drawBoard(){
+	method void drawBoard(){
 		do Screen.setColor(true); // sets color to black
 		do Screen.drawRectangle(150, 90, 306, 93);
 		do Screen.drawRectangle(150, 143, 306, 146);
 		do Screen.drawRectangle(200, 40 ,203, 196);
 		do Screen.drawRectangle(256, 40, 259, 196);
 		return;
-		
 	}
 }

@@ -5,7 +5,7 @@
 
 class Player {
 	field Array circles; // array of the placement of circles on the board represented by ints 1-9
-	field nextIndex; // stores the next index to use in the array of circles
+	field int nextIndex; // stores the next index to use in the array of circles
 	
 	
 	/** Constructs a new tic-tac-toe player */
