@@ -19,5 +19,13 @@ class Board{
 	
 	/** Draws a new board on the screen. */
 	method void drawBoard(){
+		do Screen.setColor(true); // sets color to black
+		do Screen.drawRectangle(206, 70, 302, 73);
+		do Screen.drawRectangle(206, 103, 302, 106);
+		do Screen.drawRectangle(206, 136, 302, 139);
+		do Screen.drawRectangle(236, 40 ,239, 169);
+		do Screen.drawRectangle(269, 40, 272, 169);
+		return;
+		
 	}
 }
