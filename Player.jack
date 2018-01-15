@@ -4,10 +4,28 @@
  */
 
 class Player {
-	field Array circles // array of the placement of circles on the board represented by ints
+	field Array circles; // array of the placement of circles on the board represented by ints 1-9
+	field nextIndex; // stores the next index to use in the array of circles
+	
 	
 	/** Constructs a new tic-tac-toe player */
 	constructor Player new(){
-		let circles = Array.new(5) // 5 is the maximum circles on the board 
+		let circles = Array.new(5);		// 5 is the maximum circles on the board
+		let nextIndex = 0;
+		return this;
 	}
+	
+	/** Makes a move according to player's input. */
+	method void makeMove(int circlePlacement){
+		let nextIndex = nextIndex + 1;
+		do drawCircle(circlePlacement);
+		return;
+		}
+	
+	
+	/** Draws circle on the screen in the given placement on the board. */
+	method void drawCircle(int circlePlacement){
+	
+	}
+	
 }
