@@ -1,0 +1,23 @@
+/**
+ * This is the Board for tic-tac-toe game.
+ */
+ 
+class Board{
+	field Player player; // the human player
+	field Computer computer; // the computer player
+	field int score; // score for the human player
+	field int round; // round number 
+	
+	/** Constructs a new board for the game. */
+	constructor Board new(){
+		let computer = Computer.new();
+		let player = Player.new();
+		let score = 0;
+		let round = 1;
+		return this;
+	}
+	
+	/** Draws a new board on the screen. */
+	method void drawBoard(){
+	}
+}
