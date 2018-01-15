@@ -1,0 +1,10 @@
+/** 
+ * This is the main class of Tic-Tac-Toe game.
+ */
+class Main{
+	function void main(){
+		do Board.drawBoard();
+		return;
+	}
+
+}

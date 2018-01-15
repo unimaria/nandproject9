@@ -1,0 +1,45 @@
+function Board.new 0
+push constant 4
+call Memory.alloc 1
+pop pointer 0
+call Computer.new 0
+pop this 1
+call Player.new 0
+pop this 0
+push constant 0
+pop this 2
+push constant 1
+pop this 3
+push pointer 0
+return
+function Board.drawBoard 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push constant 150
+push constant 90
+push constant 306
+push constant 93
+call Screen.drawRectangle 4
+pop temp 0
+push constant 150
+push constant 143
+push constant 306
+push constant 146
+call Screen.drawRectangle 4
+pop temp 0
+push constant 200
+push constant 40
+push constant 203
+push constant 196
+call Screen.drawRectangle 4
+pop temp 0
+push constant 256
+push constant 40
+push constant 259
+push constant 196
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
