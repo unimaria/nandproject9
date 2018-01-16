@@ -146,6 +146,7 @@ class Player {
 		}
 		if (crossPlacement = 6){
 			do Output.moveCursor(10, 35);
+			do Screen.setColor(true);
 			do Screen.drawLine(273, 108, 293, 128);
 			do Screen.drawLine(273, 107, 293, 127);
 			do Screen.drawLine(273, 109, 293, 129);
