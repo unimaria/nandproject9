@@ -1,0 +1,216 @@
+/**
+ * This is the Board for tic-tac-toe game.
+ */
+ 
+class Board{
+	field Player player1; // the human player
+	field Player player2; // the human player
+	field int score1; // score for the human player
+	field int score2;
+	field int round; // round number
+	static Array occupied; // boolean array for marking the 9 places on the board
+	field int numOccupied;
+	
+	/** Constructs a new board for the game. */
+	constructor Board new(){
+		var int i;
+		
+		//let computer = Computer.new();
+		let player1 = Player.new(0); // cross
+		let player2 = Player.new(1); // circle
+		let occupied = Array.new(9);
+		//let i = 0;
+		//while (i<9){
+		//	let occupied[i] = false;
+		//	let i = i + 1;
+		//}
+		let score1 = 0;
+		let score2 = 0;
+		let round = 1;
+		let numOccupied = 0;
+		return this;
+	}
+	
+	/** Draws a new board on the screen. */
+	method void drawBoard(){
+		do Screen.setColor(true); // sets color to black
+		do Screen.drawRectangle(150, 90, 306, 93);
+		do Screen.drawRectangle(150, 143, 306, 146);
+		do Screen.drawRectangle(200, 40 ,203, 196);
+		do Screen.drawRectangle(256, 40, 259, 196);
+		do numberBoard();
+		return;
+	}
+	
+	
+	/** Numbers the board for the user's convenience. */
+	method void numberBoard(){
+		do Output.moveCursor(6, 21); // (row, column)
+		do Output.printInt(1);
+		do Output.moveCursor(6, 28);
+		do Output.printInt(2);
+		do Output.moveCursor(6, 35);
+		do Output.printInt(3);
+		do Output.moveCursor(10, 21);
+		do Output.printInt(4);
+		do Output.moveCursor(10, 28);
+		do Output.printInt(5);
+		do Output.moveCursor(10, 35);
+		do Output.printInt(6);
+		do Output.moveCursor(15, 21);
+		do Output.printInt(7);
+		do Output.moveCursor(15, 28);
+		do Output.printInt(8);
+		do Output.moveCursor(15, 35);
+		do Output.printInt(9);
+		return;
+	}
+	
+/** Checks input for board placement. */
+	method int checkInput(int userInput){
+		while ((userInput < 1) | (userInput > 9)){
+			if (userInput = 88)
+			{
+				do Sys.halt();
+			}
+			do Output.moveCursor(0,0);
+			let userInput = Keyboard.readInt("Enter a number 1-9 ,or 88 for quit:");
+		}
+		return userInput;
+	}
+	
+	/** Plays one turn of the human player */
+	method void playCircleTurn(){
+		var int userInput;
+		
+		do Output.moveCursor(0,0);
+		let userInput = Keyboard.readInt("Enter a number 1-9 ,or 88 for quit:");
+		let userInput = checkInput(userInput);
+		while((occupied[userInput - 1])){
+			do Output.moveCursor(0,0);
+			let userInput = Keyboard.readInt("Enter a number 1-9 ,or 88 for quit:");
+			let userInput = checkInput(userInput);
+		}
+		do player2.makeMove(userInput);
+		let occupied[userInput - 1] = true;
+		let numOccupied = numOccupied + 1;
+		return;
+	}
+	
+	/** Plays one turn of the human player */
+	method void playCrossTurn(){
+		var int userInput;
+		
+		do Output.moveCursor(0,0);
+		let userInput = Keyboard.readInt("Enter a number 1-9 ,or 88 for quit:");
+		let userInput = checkInput(userInput);
+		while((occupied[userInput - 1])){
+			do Output.moveCursor(0,0);
+			let userInput = Keyboard.readInt("Enter a number 1-9 ,or 88 for quit:");
+			let userInput = checkInput(userInput);
+		}
+		do player1.makeMove(userInput);
+		let occupied[userInput - 1] = true;
+		let numOccupied = numOccupied + 1;
+		return;
+	}
+	
+	
+	/** Displays the player's score. */
+	method void displayScore(){
+		do Output.moveCursor(1, 50);
+		do Screen.setColor(true);
+		do Output.printString("Score1:");
+		do Output.moveCursor(1, 58);
+		do Output.printInt(score1);
+		do Output.moveCursor(2, 50);
+		do Screen.setColor(true);
+		do Output.printString("Score2:");
+		do Output.moveCursor(2, 58);
+		do Output.printInt(score2);
+		return;
+	}
+	
+	/** Displays round number. */
+	method void displayRound()
+	{
+		do Output.moveCursor(5, 50);
+		do Screen.setColor(true);
+		do Output.printString("Round:");
+		do Output.moveCursor(5, 58);
+		do Output.printInt(round);
+		return;
+	}
+	
+	/**Deals with computer winning. */
+	method void computerWonRound(){
+		do Output.moveCursor(20, 35);
+		do Output.printString("You lost this round!");
+		return;
+	}
+	
+	/**Deals with player winning. */
+	method void playerWonRound(int num){
+		if (num = 1){
+			do Output.moveCursor(20, 35);
+			do Output.printString("Player1! You won this round!");
+			let score1 = score1 + 1;
+		}
+		else{
+			do Output.moveCursor(20, 35);
+			do Output.printString("Player2! You won this round!");
+			let score2 = score2 + 1;
+		}
+		return;
+	}
+	
+	/** Plays one round of the game. */
+	method void playOneRound(){
+		var boolean player1Win;
+		var boolean player2Win;
+		var int i;
+		
+		let i = 0;
+		while (i<9){
+			let occupied[i] = false;
+			let i = i + 1;
+		}
+		let numOccupied = 0;
+		let player1Win = false;
+		let player2Win = false;
+		do Screen.clearScreen();
+		do drawBoard();
+		do displayScore();
+		do displayRound();
+		while(((~player1Win) & (~player2Win)) & (numOccupied < 9)){
+			do playCrossTurn();
+			if (player1.checkWin()){
+				let player1Win = true;
+			}
+			else{
+				if (numOccupied < 9){
+					do playCircleTurn();
+				}
+			}
+			if (player2.checkWin()){
+				let player2Win = true;
+			}
+		}
+		if (player1Win){
+			do playerWonRound(1);
+		}
+		if (player2Win){
+			do playerWonRound(2);
+		}
+		if ((~player1Win)&(~player2Win)){
+			do Output.moveCursor(20, 35);
+			do Output.printString("It's a tie!");
+		}
+		let round = round + 1;
+		do player1.clearCounters();
+		do player2.clearCounters();
+		do Sys.wait(1500);
+		//do Output.moveCursor(20, 35);
+		return;
+	}
+}

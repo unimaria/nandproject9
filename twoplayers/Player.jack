@@ -1,10 +1,9 @@
 /**
- * This is the computer player for tic-tac-toe game.
+ * This is the human player of the tic-tac-toe game.
+ * The human player is represented by a circle.
  */
-class Computer{
-	field Array crosses; // array of the placement of crosses on the board represented by ints 1-9
-	field int nextIndex; // stores the next index to use in the array of crosses;
-	// number of crosses in row, column or diagonal
+
+class Player {
 	field int row1;
 	field int row2;
 	field int row3; 
@@ -13,12 +12,11 @@ class Computer{
 	field int col3;
 	field int diag1;
 	field int diag2;
+	field boolean circle;
 	
 	
-	/** Constructs a new tic-tac-toe computer player */
-	constructor Computer new(){
-		let crosses = Array.new(5);
-		let nextIndex = 0;
+	/** Constructs a new tic-tac-toe player */
+	constructor Player new(int circleOrCross){
 		let row1 = 0;
 		let row2 = 0;
 		let row3 = 0;
@@ -27,40 +25,72 @@ class Computer{
 		let col3 = 0;
 		let diag1 = 0;
 		let diag2 = 0;
+		if (circleOrCross = 1){
+			let circle = true;
+		}
+		else{
+			let circle = false;
+		}
 		return this;
 	}
 	
-	/** Returns random number in range 0 to the given. */
-	method int random(int range){
-		
-	}
-	
-	/** Chooses board placement for computer's turn. */
-	method int choosePlacement(Array occupied, int occupiedCount){
-		var Array freeIndices;
-		var int freeNum;
-		var int i;
-		
-		let freeNum = 9 - occupiedCount;
-		let freeIndices = Array.new(freeNum);
-		let i = 0;
-		while(i<9){
-			if (~occupied[i]){
-				freeIndices[i] = (i + 1);
-			}
+	/** Makes a move according to player's input. The placement is a correct user input.*/
+	method void makeMove(int circlePlacement){
+		do countCircles(circlePlacement);
+		if (circle){
+			do drawCircle(circlePlacement);
 		}
-	}
+		else{
+			do drawCross(circlePlacement);
+		}
+		return;
+		}
 	
-	/** Makes move for computer player. */
-	method int makeMove(Array occupied, int occupiedCount){
-		var int crossPlacement;
-		
-		let crossPlacement = choosePlacement(occupied, occupiedCount);
-		let crosses[nextIndex] = crossPlacement;
-		let nextIndex = nextIndex + 1;
-		do countCrosses(crossPlacement);
-		do drawCross(crossPlacement);
-		return crossPlacement;
+	/** Counts the rows, columns and diagonals with circles. */
+	method void countCircles(int circlePlacement){
+		if (circlePlacement = 1){
+			let row1 = row1 + 1;
+			let diag1 = diag1 + 1;
+			let col1 = col1 + 1;
+		}
+		if (circlePlacement = 2){
+			let row1 = row1 + 1;
+			let col2 = col2 + 1;
+		}
+		if (circlePlacement = 3){
+			let row1 = row1 + 1;
+			let col3 = col3 + 1;
+			let diag2 = diag2 + 1;
+		}
+		if (circlePlacement = 4){
+			let row2 = row2 + 1;
+			let col1 = col1 + 1;
+		}
+		if (circlePlacement = 5){
+			let row2 = row2 + 1;
+			let col2 = col2 + 1;
+			let diag1 = diag1 + 1;
+			let diag2 = diag2 + 1;
+		}
+		if (circlePlacement = 6){
+			let row2 = row2 + 1;
+			let col3 = col3 + 1;
+		}
+		if (circlePlacement = 7){
+			let row3 = row3 + 1;
+			let col1 = col1 + 1;
+			let diag2 = diag2 + 1;
+		}
+		if (circlePlacement = 8){
+			let row3 = row3 + 1;
+			let col2 = col2 + 1;
+		}
+		if (circlePlacement = 9){
+			let row3 = row3 + 1;
+			let col3 = col3 + 1;
+			let diag1 = diag1 + 1;
+		}
+		return;
 	}
 	
 	/** Draw crosses on board according to given placement. */
@@ -156,58 +186,85 @@ class Computer{
 		return;
 	}
 	
-	/** Counts the rows, columns and diagonals with crosses. */
-	method void countCrosses(int crossPlacement){
-		if (crossPlacement = 1){
-			let row1 = row1 + 1;
-			let diag1 = diag1 + 1;
-			let col1 = col1 + 1;
+	/** Draws circle on the screen in the given placement on the board. */
+	method void drawCircle(int circlePlacement){
+		if (circlePlacement = 1){
+			do Screen.setColor(true);
+			do Screen.drawCircle(175, 65, 15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(175, 65, 10);
 		}
-		if (crossPlacement = 2){
-			let row1 = row1 + 1;
-			let col2 = col2 + 1;
+		if (circlePlacement = 2){
+			do Screen.setColor(true);
+			do Screen.drawCircle(230,65,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(230, 65, 10);
+ 		}
+		if (circlePlacement = 3){
+			do Screen.setColor(true);
+			do Screen.drawCircle(283,65,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(283, 65, 10);
 		}
-		if (crossPlacement = 3){
-			let row1 = row1 + 1;
-			let col3 = col3 + 1;
-			let diag2 = diag2 + 1;
+		if (circlePlacement = 4){
+			do Screen.setColor(true);
+			do Screen.drawCircle(175,118,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(175, 118, 10);
 		}
-		if (crossPlacement = 4){
-			let row2 = row2 + 1;
-			let col1 = col1 + 1;
+		if (circlePlacement = 5){
+			do Screen.setColor(true);
+			do Screen.drawCircle(230,118,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(230, 118, 10);
 		}
-		if (crossPlacement = 5){
-			let row2 = row2 + 1;
-			let col2 = col2 + 1;
-			let diag1 = diag1 + 1;
-			let diag2 = diag2 + 1;
+		if (circlePlacement = 6){
+			do Screen.setColor(true);
+			do Screen.drawCircle(283,118,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(283, 118, 10);
 		}
-		if (crossPlacement = 6){
-			let row2 = row2 + 1;
-			let col3 = col3 + 1;
+		if (circlePlacement = 7){
+			do Screen.setColor(true);
+			do Screen.drawCircle(175,171,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(175, 171, 10);
 		}
-		if (crossPlacement = 7){
-			let row3 = row3 + 1;
-			let col1 = col1 + 1;
-			let diag2 = diag2 + 1;
+		if (circlePlacement = 8){
+			do Screen.setColor(true);
+			do Screen.drawCircle(230,171,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(230, 171, 10);
 		}
-		if (crossPlacement = 8){
-			let row3 = row3 + 1;
-			let col2 = col2 + 1;
-		}
-		if (crossPlacement = 9){
-			let row3 = row3 + 1;
-			let col3 = col3 + 1;
-			let diag1 = diag1 + 1;
+		if (circlePlacement = 9){
+			do Screen.setColor(true);
+			do Screen.drawCircle(283,171,15);
+			do Screen.setColor(false);
+			do Screen.drawCircle(283, 171, 10);
 		}
 		return;
 	}
-	
-	/** Checks if computer won. */
+		
+	/** Checks if player won. */
 	method boolean checkWin(){
 		if ((row1 = 3) | (row2 = 3) | (row3 = 3) | (col1 = 3) | (col2 = 3) | (col3 = 3) | (diag1 = 3) | (diag2 = 3)){
 			return true;
 		}
 		return false;
 	}
+	
+	method void clearCounters(){
+		let row1 = 0;
+		let row2 = 0;
+		let row3 = 0;
+		let col1 = 0;
+		let col2 = 0;
+		let col3 = 0;
+		let diag1 = 0;
+		let diag2 = 0;
+		return;
+	}
+	
+	
+	
 }

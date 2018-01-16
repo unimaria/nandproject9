@@ -1,0 +1,15 @@
+/** 
+ * This is the main class of Tic-Tac-Toe game.
+ */
+class Main{
+	function void main(){
+		var Board board;
+		
+		let board = Board.new();
+		while(true){
+			do board.playOneRound();
+		}
+		return;
+	}
+
+}
