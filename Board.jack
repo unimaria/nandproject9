@@ -4,7 +4,7 @@
  
 class Board{
 	field Player player; // the human player
-	field Computer computer; // the computer player
+	//field Computer computer; // the computer player
 	field int score; // score for the human player
 	field int round; // round number
 	field Array occupied; // boolean array for marking the 9 places on the board
@@ -13,7 +13,7 @@ class Board{
 	constructor Board new(){
 		var int i;
 		
-		let computer = Computer.new();
+		//let computer = Computer.new();
 		let player = Player.new();
 		let occupied = Array.new(9);
 		let i = 0;
@@ -34,5 +34,29 @@ class Board{
 		do Screen.drawRectangle(200, 40 ,203, 196);
 		do Screen.drawRectangle(256, 40, 259, 196);
 		return;
+	}
+	
+	/** Plays one turn of circle */
+	method void playCircleTurn(){
+		var int userInput;
+		let userInput = Keyboard.readInt("Enter a number 1-9:");
+		let userInput = checkInput(userInput);
+		while(occupied[userInput - 1] = true){
+			let userInput = checkInput(userInput);
+		}
+		do player.drawCircle(userInput);
+		return;
+	}
+	
+	method int checkInput(int userInput){
+		//var String eraseStr;
+		//let eraseStr = "                          ";
+		while ((userInput < 1) | (userInput > 9)){
+			do Output.moveCursor(0,0);
+			//do Output.printString(eraseStr);
+			//do String.dispose(eraseStr);
+			let userInput = Keyboard.readInt("Enter a number 1-9:");
+		}
+		return userInput;
 	}
 }

@@ -3,8 +3,10 @@
  */
 class Main{
 	function void main(){
-		do Board.drawBoard();
-		do Player.drawCircle(8);
+		var Board board;
+		let board = Board.new();
+		do board.drawBoard();
+		do board.playCircleTurn();
 		return;
 	}
 

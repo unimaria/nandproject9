@@ -13,6 +13,14 @@ function Player.makeMove 0
 push argument 0
 pop pointer 0
 push this 1
+push this 0
+add
+push argument 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push this 1
 push constant 1
 add
 pop this 1
@@ -24,6 +32,8 @@ push constant 0
 return
 function Player.drawCircle 0
 push argument 0
+pop pointer 0
+push argument 1
 push constant 1
 eq
 if-goto IF_TRUE0
@@ -47,7 +57,7 @@ push constant 10
 call Screen.drawCircle 3
 pop temp 0
 label IF_FALSE0
-push argument 0
+push argument 1
 push constant 2
 eq
 if-goto IF_TRUE1
@@ -71,7 +81,7 @@ push constant 10
 call Screen.drawCircle 3
 pop temp 0
 label IF_FALSE1
-push argument 0
+push argument 1
 push constant 3
 eq
 if-goto IF_TRUE2
@@ -95,7 +105,7 @@ push constant 10
 call Screen.drawCircle 3
 pop temp 0
 label IF_FALSE2
-push argument 0
+push argument 1
 push constant 4
 eq
 if-goto IF_TRUE3
@@ -119,7 +129,7 @@ push constant 10
 call Screen.drawCircle 3
 pop temp 0
 label IF_FALSE3
-push argument 0
+push argument 1
 push constant 5
 eq
 if-goto IF_TRUE4
@@ -143,7 +153,7 @@ push constant 10
 call Screen.drawCircle 3
 pop temp 0
 label IF_FALSE4
-push argument 0
+push argument 1
 push constant 6
 eq
 if-goto IF_TRUE5
@@ -167,7 +177,7 @@ push constant 10
 call Screen.drawCircle 3
 pop temp 0
 label IF_FALSE5
-push argument 0
+push argument 1
 push constant 7
 eq
 if-goto IF_TRUE6
@@ -191,7 +201,7 @@ push constant 10
 call Screen.drawCircle 3
 pop temp 0
 label IF_FALSE6
-push argument 0
+push argument 1
 push constant 8
 eq
 if-goto IF_TRUE7
@@ -215,7 +225,7 @@ push constant 10
 call Screen.drawCircle 3
 pop temp 0
 label IF_FALSE7
-push argument 0
+push argument 1
 push constant 9
 eq
 if-goto IF_TRUE8
