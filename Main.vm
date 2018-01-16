@@ -1,11 +1,14 @@
-function Main.main 1
+function Main.main 2
 call Board.new 0
 pop local 0
 push local 0
 call Board.drawBoard 1
 pop temp 0
-push constant 9
-call Computer.drawCross 1
+push local 0
+call Board.displayScore 1
+pop temp 0
+push local 0
+call Board.displayRound 1
 pop temp 0
 push constant 0
 return

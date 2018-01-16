@@ -4,9 +4,12 @@
 class Main{
 	function void main(){
 		var Board board;
+		var Player player;
 		let board = Board.new();
 		do board.drawBoard();
-		do Computer.drawCross(9);
+		do board.displayScore();
+		do board.displayRound();
+		//do Computer.drawCross(9);
 		return;
 	}
 
