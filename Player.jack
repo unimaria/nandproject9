@@ -17,6 +17,7 @@ class Player {
 	
 	/** Makes a move according to player's input. */
 	method void makeMove(int circlePlacement){
+		let circles[nextIndex] = circlePlacement;
 		let nextIndex = nextIndex + 1;
 		do drawCircle(circlePlacement);
 		return;
