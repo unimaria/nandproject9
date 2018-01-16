@@ -36,22 +36,21 @@ class Computer{
 	}
 	
 	/** Makes move for computer player. */
-	method void makeMove(){
+	method int makeMove(){
 		var int crossPlacement;
 		
 		let crossPlacement = choosePlacement();
 		let crosses[nextIndex] = crossPlacement;
 		let nextIndex = nextIndex + 1;
-		//do countCrosses(crossPlacement);
-		//do drawCross(crossPlacement);
-		return;
+		do countCrosses(crossPlacement);
+		do drawCross(crossPlacement);
+		return crossPlacement;
 	}
 	
 	/** Draw crosses on board according to given placement. */
-	function void drawCross(int crossPlacement){
+	method void drawCross(int crossPlacement){
 		if (crossPlacement = 1){
 			do Output.moveCursor(6, 21);
-			//do Output.printInt(1);
 			do Screen.setColor(true);
 			do Screen.drawLine(165, 55, 185, 75);
 			do Screen.drawLine(165, 56, 185, 76);

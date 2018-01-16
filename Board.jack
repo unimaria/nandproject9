@@ -4,25 +4,29 @@
  
 class Board{
 	field Player player; // the human player
-	//field Computer computer; // the computer player
+	field Computer computer; // the computer player
 	field int score; // score for the human player
 	field int round; // round number
 	field Array occupied; // boolean array for marking the 9 places on the board
+	field boolean lastWinComputer;
+	field int numOccupied;
 	
 	/** Constructs a new board for the game. */
 	constructor Board new(){
 		var int i;
 		
-		//let computer = Computer.new();
+		let computer = Computer.new();
 		let player = Player.new();
 		let occupied = Array.new(9);
-		let i = 0;
-		while (i<9){
-			let occupied[i] = false;
-			let i = i + 1;
-		}
+		//let i = 0;
+		//while (i<9){
+		//	let occupied[i] = false;
+		//	let i = i + 1;
+		//}
 		let score = 0;
 		let round = 1;
+		let numOccupied = 0;
+		let lastWinComputer = false;
 		return this;
 	}
 	
@@ -61,25 +65,42 @@ class Board{
 		return;
 	}
 	
-	/** Plays one turn of circle */
+	/** Plays one turn of the human player */
 	method void playCircleTurn(){
 		var int userInput;
 		
 		do Output.moveCursor(0,0);
-		let userInput = Keyboard.readInt("Enter a number 1-9:");
+		let userInput = Keyboard.readInt("Enter a number 1-9 ,or 0 for quit:");
 		let userInput = checkInput(userInput);
 		while(occupied[userInput - 1] = true){
 			let userInput = checkInput(userInput);
 		}
-		do player.drawCircle(userInput);
+		do player.makeMove(userInput);
+		let occupied[userInput - 1] = true;
+		let occupied = occupied + 1;
 		return;
 	}
+	
+	/** Plays one turn of the computer. */
+	method void playCrossTurn(){
+		var int computerIndex;
+		
+		let computerIndex = computer.makeMove();
+		let occupied[computerIndex - 1] = true;
+		let occupied = occupied + 1;
+		return;
+	}
+	
 	
 	/** Checks input for board placement. */
 	method int checkInput(int userInput){
 		while ((userInput < 1) | (userInput > 9)){
+			if (userInput = 0)
+			{
+				do Sys.halt();
+			}
 			do Output.moveCursor(0,0);
-			let userInput = Keyboard.readInt("Enter a number 1-9:");
+			let userInput = Keyboard.readInt("Enter a number 1-9 ,or 0 for quit:");
 		}
 		return userInput;
 	}
@@ -108,6 +129,72 @@ class Board{
 		do Output.printString("Round:");
 		do Output.moveCursor(2, 58);
 		do Output.printInt(round);
+		return;
+	}
+	
+	/**Deals with computer winning. */
+	method void computerWonRound(){
+		do Output.moveCursor(20, 35);
+		do Output.printString("You lost this round!");
+		let lastWinComputer = true;
+		return;
+	}
+	
+	/**Deals with player winning. */
+	method void playerWonRound(){
+		do Output.moveCursor(20, 35);
+		do Output.printString("You won this round!");
+		let score = score + 1;
+		return;
+	}
+	
+	/** Plays one round of the game. */
+	method void playOneRound(){
+		var boolean playerWin;
+		var boolean computerWin;
+		
+		let i = 0;
+		while (i<9){
+			let occupied[i] = false;
+			let i = i + 1;
+		}
+		let numOccupied = 0;
+		let playerWin = false;
+		let computerWin = false;
+		do drawBoard();
+		do displayScore();
+		do displayRound();
+		while(((~playerWin) & (~computerWin)) | (occupied = 9)){
+			// computer will start if it won last round.
+			if (lastWinComputer){
+				do playCrossTurn();
+				let lastWinComputer = false; 
+			}
+			do playCircleTurn();
+			if (player.checkWin()){
+				let playerWin = true;
+			}
+			else{
+				if (occupied < 9){
+					do playCrossTurn();
+				}
+			}
+			if (computer.checkWin()){
+				let computerWin = true;
+			}
+		}
+		if (computerWin){
+			do computerWonRound();
+		}
+		if (playerWin){
+			do playerWonRound();
+		}
+		if ((~computerWin)&(~playerWin)){
+			do Output.moveCursor(20, 35);
+			do Output.printString("It's a tie!");
+		}
+		let round = round + 1;
+		do Sys.wait(10);
 		return;
 	}
 }

@@ -9,6 +9,7 @@ class Main{
 		do board.drawBoard();
 		do board.displayScore();
 		do board.displayRound();
+		do board.playCircleTurn();
 		//do Computer.drawCross(9);
 		return;
 	}

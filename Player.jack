@@ -32,7 +32,7 @@ class Player {
 		return this;
 	}
 	
-	/** Makes a move according to player's input. */
+	/** Makes a move according to player's input. The placement is a correct user input.*/
 	method void makeMove(int circlePlacement){
 		let circles[nextIndex] = circlePlacement;
 		let nextIndex = nextIndex + 1;
