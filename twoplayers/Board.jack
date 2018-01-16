@@ -71,6 +71,7 @@ class Board{
 		while ((userInput < 1) | (userInput > 9)){
 			if (userInput = 88)
 			{
+				do dispose();
 				do Sys.halt();
 			}
 			do Output.moveCursor(0,0);
@@ -211,6 +212,14 @@ class Board{
 		do player2.clearCounters();
 		do Sys.wait(1500);
 		//do Output.moveCursor(20, 35);
+		return;
+	}
+	
+	method void dispose(){
+		do occupied.dispose();
+		do Memory.deAlloc(player1);
+		do Memory.deAlloc(player2);
+		do Memory.deAlloc(this);
 		return;
 	}
 }

@@ -144,6 +144,9 @@ eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
+push pointer 0
+call Board.dispose 1
+pop temp 0
 call Sys.halt 0
 pop temp 0
 label IF_FALSE0
@@ -1097,6 +1100,23 @@ call Player.clearCounters 1
 pop temp 0
 push constant 1500
 call Sys.wait 1
+pop temp 0
+push constant 0
+return
+function Board.dispose 0
+push argument 0
+pop pointer 0
+push static 0
+call Array.dispose 1
+pop temp 0
+push this 0
+call Memory.deAlloc 1
+pop temp 0
+push this 1
+call Memory.deAlloc 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
 pop temp 0
 push constant 0
 return
