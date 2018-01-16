@@ -33,12 +33,39 @@ class Board{
 		do Screen.drawRectangle(150, 143, 306, 146);
 		do Screen.drawRectangle(200, 40 ,203, 196);
 		do Screen.drawRectangle(256, 40, 259, 196);
+		do numberBoard();
+		return;
+	}
+	
+	
+	/** Numbers the board for the user's convenience. */
+	method void numberBoard(){
+		do Output.moveCursor(6, 21); // (row, column)
+		do Output.printInt(1);
+		do Output.moveCursor(6, 28);
+		do Output.printInt(2);
+		do Output.moveCursor(6, 35);
+		do Output.printInt(3);
+		do Output.moveCursor(10, 21);
+		do Output.printInt(4);
+		do Output.moveCursor(10, 28);
+		do Output.printInt(5);
+		do Output.moveCursor(10, 35);
+		do Output.printInt(6);
+		do Output.moveCursor(15, 21);
+		do Output.printInt(7);
+		do Output.moveCursor(15, 28);
+		do Output.printInt(8);
+		do Output.moveCursor(15, 35);
+		do Output.printInt(9);
 		return;
 	}
 	
 	/** Plays one turn of circle */
 	method void playCircleTurn(){
 		var int userInput;
+		
+		do Output.moveCursor(0,0);
 		let userInput = Keyboard.readInt("Enter a number 1-9:");
 		let userInput = checkInput(userInput);
 		while(occupied[userInput - 1] = true){
@@ -48,13 +75,10 @@ class Board{
 		return;
 	}
 	
+	/** Checks input for board placement. */
 	method int checkInput(int userInput){
-		//var String eraseStr;
-		//let eraseStr = "                          ";
 		while ((userInput < 1) | (userInput > 9)){
 			do Output.moveCursor(0,0);
-			//do Output.printString(eraseStr);
-			//do String.dispose(eraseStr);
 			let userInput = Keyboard.readInt("Enter a number 1-9:");
 		}
 		return userInput;

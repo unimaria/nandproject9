@@ -1,0 +1,198 @@
+/**
+ * This is the computer player for tic-tac-toe game.
+ */
+class Computer{
+	field Array crosses; // array of the placement of crosses on the board represented by ints 1-9
+	field int nextIndex; // stores the next index to use in the array of crosses;
+	// number of crosses in row, column or diagonal
+	field int row1;
+	field int row2;
+	field int row3; 
+	field int col1;
+	field int col2;
+	field int col3;
+	field int diag1;
+	field int diag2;
+	
+	
+	/** Constructs a new tic-tac-toe computer player */
+	constructor Computer new(){
+		let crosses = Array.new(5);
+		let nextIndex = 0;
+		let row1 = 0;
+		let row2 = 0;
+		let row3 = 0;
+		let col1 = 0;
+		let col2 = 0;
+		let col3 = 0;
+		let diag1 = 0;
+		let diag2 = 0;
+		return this;
+	}
+	
+	/** Chooses board placement for computer's turn. */
+	method int choosePlacement(){
+		return 1;
+	}
+	
+	/** Makes move for computer player. */
+	method void makeMove(){
+		var int crossPlacement;
+		
+		let crossPlacement = choosePlacement();
+		let crosses[nextIndex] = crossPlacement;
+		let nextIndex = nextIndex + 1;
+		//do countCrosses(crossPlacement);
+		//do drawCross(crossPlacement);
+		return;
+	}
+	
+	/** Draw crosses on board according to given placement. */
+	function void drawCross(int crossPlacement){
+		if (crossPlacement = 1){
+			do Output.moveCursor(6, 21);
+			//do Output.printInt(1);
+			do Screen.setColor(true);
+			do Screen.drawLine(165, 55, 185, 75);
+			do Screen.drawLine(165, 56, 185, 76);
+			do Screen.drawLine(165, 54, 185, 74);
+			do Screen.drawLine(165, 75, 185, 55);
+			do Screen.drawLine(166, 75, 186, 55);
+			do Screen.drawLine(164, 75, 184, 55);
+		}
+		if (crossPlacement = 2){
+			do Output.moveCursor(6, 28);
+			do Screen.setColor(true);
+			do Screen.drawLine(220, 55, 240, 75);
+			do Screen.drawLine(220, 56, 240, 76);
+			do Screen.drawLine(220, 54, 240, 74);
+			do Screen.drawLine(220, 75, 240, 55);
+			do Screen.drawLine(221, 75, 241, 55);
+			do Screen.drawLine(219, 75, 239, 55);
+ 		}
+		if (crossPlacement = 3){
+			do Output.moveCursor(6, 35);
+			do Screen.setColor(true);
+			do Screen.drawLine(273, 55, 293, 75);
+			do Screen.drawLine(273, 56, 293, 76);
+			do Screen.drawLine(273, 54, 293, 74);
+			do Screen.drawLine(273, 75, 293, 55);
+			do Screen.drawLine(272, 75, 294, 55);
+			do Screen.drawLine(274, 75, 292, 55);
+		}
+		if (crossPlacement = 4){
+			do Output.moveCursor(10, 21);
+			do Screen.setColor(true);
+			do Screen.drawLine(165, 108, 185, 128);
+			do Screen.drawLine(165, 107, 185, 127);
+			do Screen.drawLine(165, 128, 185, 108);
+			do Screen.drawLine(164, 128, 184, 108);
+			do Screen.drawLine(163, 128, 183, 108);
+		}
+		if (crossPlacement = 5){
+			do Output.moveCursor(10, 28);
+			do Screen.setColor(true);
+			do Screen.drawLine(220, 108, 240, 128);
+			do Screen.drawLine(220, 107, 240, 127);
+			do Screen.drawLine(220, 109, 240, 129);
+			do Screen.drawLine(220, 128, 240, 108);
+			do Screen.drawLine(219, 128, 239, 108);
+			do Screen.drawLine(221, 128, 241, 108);
+		}
+		if (crossPlacement = 6){
+			do Output.moveCursor(10, 35);
+			do Screen.drawLine(273, 108, 293, 128);
+			do Screen.drawLine(273, 107, 293, 127);
+			do Screen.drawLine(273, 109, 293, 129);
+			do Screen.drawLine(273, 128, 293, 108);
+			do Screen.drawLine(272, 128, 292, 108);
+			do Screen.drawLine(274, 128, 294, 108);
+		}
+		if (crossPlacement = 7){
+			do Output.moveCursor(15, 21);
+			do Screen.setColor(true);
+			do Screen.drawLine(165, 161, 185, 181);
+			do Screen.drawLine(165, 160, 185, 180);
+			do Screen.drawLine(165, 162, 185, 182);
+			do Screen.drawLine(165, 181, 185, 161);
+			do Screen.drawLine(164, 181, 184, 161);
+			do Screen.drawLine(166, 181, 186, 161);
+		}
+		if (crossPlacement = 8){
+			do Output.moveCursor(15, 28);
+			do Screen.setColor(true);
+			do Screen.drawLine(220, 161, 240, 181);
+			do Screen.drawLine(220, 160, 240, 180);
+			do Screen.drawLine(220, 162, 240, 182);
+			do Screen.drawLine(220, 181, 240, 161);
+			do Screen.drawLine(219, 181, 239, 161);
+			do Screen.drawLine(221, 181, 241, 161);
+		}
+		if (crossPlacement = 9){
+			do Output.moveCursor(15, 35);
+			do Screen.setColor(true);
+			do Screen.drawLine(273, 161, 293, 181);
+			do Screen.drawLine(273, 160, 293, 180);
+			do Screen.drawLine(273, 162, 293, 182);
+			do Screen.drawLine(273, 181, 293, 161);
+			do Screen.drawLine(272, 181, 292, 161);
+			do Screen.drawLine(274, 181, 294, 161);
+		}
+		return;
+	}
+	
+	/** Counts the rows, columns and diagonals with crosses. */
+	method void countCrosses(int crossPlacement){
+		if (crosslePlacement = 1){
+			let row1 = row1 + 1;
+			let diag1 = diag1 + 1;
+			let col1 = col1 + 1;
+		}
+		if (crossPlacement = 2){
+			let row1 = row1 + 1;
+			let col2 = col2 + 1;
+		}
+		if (crossPlacement = 3){
+			let row1 = row1 + 1;
+			let col3 = col3 + 1;
+			let diag2 = diag2 + 1;
+		}
+		if (crossPlacement = 4){
+			let row2 = row2 + 1;
+			let col1 = col1 + 1;
+		}
+		if (crossPlacement = 5){
+			let row2 = row2 + 1;
+			let col2 = col2 + 1;
+			let diag1 = diag1 + 1;
+			let diag2 = diag2 + 1;
+		}
+		if (crossPlacement = 6){
+			let row2 = row2 + 1;
+			let col3 = col3 + 1;
+		}
+		if (crossPlacement = 7){
+			let row3 = row3 + 1;
+			let col1 = col1 + 1;
+			let diag2 = diag2 + 1;
+		}
+		if (crossPlacement = 8){
+			let row3 = row3 + 1;
+			let col2 = col2 + 1;
+		}
+		if (crossPlacement = 9){
+			let row3 = row3 + 1;
+			let col3 = col3 + 1;
+			let diag1 = diag1 + 1;
+		}
+		return;
+	}
+	
+	/** Checks if computer won. */
+	method boolean checkWin(){
+		if ((row1 = 3) | (row2 = 3) | (row3 = 3) | (col1 = 3) | (col2 = 3) | (col3 = 3) | (diag1 = 3) | (diag2 = 3)){
+			return true;
+		}
+		return false;
+	}
+}

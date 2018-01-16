@@ -6,7 +6,7 @@ class Main{
 		var Board board;
 		let board = Board.new();
 		do board.drawBoard();
-		do board.playCircleTurn();
+		do Computer.drawCross(9);
 		return;
 	}
 

@@ -6,12 +6,29 @@
 class Player {
 	field Array circles; // array of the placement of circles on the board represented by ints 1-9
 	field int nextIndex; // stores the next index to use in the array of circles
+	// number of circles in row, column or diagonal
+	field int row1;
+	field int row2;
+	field int row3; 
+	field int col1;
+	field int col2;
+	field int col3;
+	field int diag1;
+	field int diag2;
 	
 	
 	/** Constructs a new tic-tac-toe player */
 	constructor Player new(){
 		let circles = Array.new(5);		// 5 is the maximum circles on the board
 		let nextIndex = 0;
+		let row1 = 0;
+		let row2 = 0;
+		let row3 = 0;
+		let col1 = 0;
+		let col2 = 0;
+		let col3 = 0;
+		let diag1 = 0;
+		let diag2 = 0;
 		return this;
 	}
 	
@@ -19,10 +36,57 @@ class Player {
 	method void makeMove(int circlePlacement){
 		let circles[nextIndex] = circlePlacement;
 		let nextIndex = nextIndex + 1;
+		do countCircles(circlePlacement);
 		do drawCircle(circlePlacement);
 		return;
 		}
 	
+	/** Counts the rows, columns and diagonals with circles. */
+	method void countCircles(int circlePlacement){
+		if (circlePlacement = 1){
+			let row1 = row1 + 1;
+			let diag1 = diag1 + 1;
+			let col1 = col1 + 1;
+		}
+		if (circlePlacement = 2){
+			let row1 = row1 + 1;
+			let col2 = col2 + 1;
+		}
+		if (circlePlacement = 3){
+			let row1 = row1 + 1;
+			let col3 = col3 + 1;
+			let diag2 = diag2 + 1;
+		}
+		if (circlePlacement = 4){
+			let row2 = row2 + 1;
+			let col1 = col1 + 1;
+		}
+		if (circlePlacement = 5){
+			let row2 = row2 + 1;
+			let col2 = col2 + 1;
+			let diag1 = diag1 + 1;
+			let diag2 = diag2 + 1;
+		}
+		if (circlePlacement = 6){
+			let row2 = row2 + 1;
+			let col3 = col3 + 1;
+		}
+		if (circlePlacement = 7){
+			let row3 = row3 + 1;
+			let col1 = col1 + 1;
+			let diag2 = diag2 + 1;
+		}
+		if (circlePlacement = 8){
+			let row3 = row3 + 1;
+			let col2 = col2 + 1;
+		}
+		if (circlePlacement = 9){
+			let row3 = row3 + 1;
+			let col3 = col3 + 1;
+			let diag1 = diag1 + 1;
+		}
+		return;
+	}
 	
 	/** Draws circle on the screen in the given placement on the board. */
 	method void drawCircle(int circlePlacement){
@@ -81,6 +145,14 @@ class Player {
 			do Screen.drawCircle(283, 171, 10);
 		}
 		return;
+	}
+		
+	/** Checks if player won. */
+	method boolean checkWin(){
+		if ((row1 = 3) | (row2 = 3) | (row3 = 3) | (col1 = 3) | (col2 = 3) | (col3 = 3) | (diag1 = 3) | (diag2 = 3)){
+			return true;
+		}
+		return false;
 	}
 	
 }

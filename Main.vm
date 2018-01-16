@@ -4,8 +4,8 @@ pop local 0
 push local 0
 call Board.drawBoard 1
 pop temp 0
-push local 0
-call Board.playCircleTurn 1
+push constant 9
+call Computer.drawCross 1
 pop temp 0
 push constant 0
 return
